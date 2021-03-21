@@ -1,0 +1,34 @@
+buildscript {
+
+    apply from: "buildscript/dependencies.gradle"
+
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath(deps.gradle.android)
+        classpath(deps.gradle.kotlin)
+        classpath(deps.gradle.aar2jar)
+    }
+}
+
+plugins {
+    id("com.stepango.androidjar") version "0.1"
+}
+
+ext.androidJar = androidjar.find(30)
+
+subprojects {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
